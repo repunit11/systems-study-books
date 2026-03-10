@@ -26,6 +26,7 @@ endif
 TYPST_FILES := $(shell find . -maxdepth 1 -name "*.typ" -type f; find . -name "main.typ" -type f)
 BOOK_FILE := compilerbook/main.typ
 RUST_OS_BOOK_FILE := rust-os-book/main.typ
+SANITIZER_FUZZER_BOOK_FILE := sanitizer-fuzzer-book/main.typ
 
 # システムフォントパス（Linuxの場合、複数指定可能）
 FONT_DIR := /usr/share/fonts
@@ -40,6 +41,8 @@ help:
 	@echo "  make watch-book    - compilerbook の変更を監視して自動コンパイル"
 	@echo "  make rust-os-book  - rust-os-book を1つのPDFとしてコンパイル"
 	@echo "  make watch-rust-os-book - rust-os-book の変更を監視して自動コンパイル"
+	@echo "  make sanitizer-fuzzer-book - sanitizer-fuzzer-book を1つのPDFとしてコンパイル"
+	@echo "  make watch-sanitizer-fuzzer-book - sanitizer-fuzzer-book の変更を監視して自動コンパイル"
 	@echo "  make clean         - 生成されたPDFファイルを削除"
 	@echo "  make watch FILE=path/to/file.typ - ファイルの変更を監視して自動コンパイル"
 	@echo "  make fonts         - Typstで使用可能なフォント一覧を表示"
@@ -72,6 +75,11 @@ book:
 .PHONY: rust-os-book
 rust-os-book:
 	@$(MAKE) build FILE=$(RUST_OS_BOOK_FILE)
+
+# sanitizer-fuzzer-book を1つのPDFとしてコンパイル
+.PHONY: sanitizer-fuzzer-book
+sanitizer-fuzzer-book:
+	@$(MAKE) build FILE=$(SANITIZER_FUZZER_BOOK_FILE)
 
 # 指定したファイルをコンパイル
 .PHONY: build
@@ -125,6 +133,11 @@ watch-book:
 .PHONY: watch-rust-os-book
 watch-rust-os-book:
 	@$(MAKE) watch FILE=$(RUST_OS_BOOK_FILE)
+
+# sanitizer-fuzzer-book の変更を監視して自動コンパイル
+.PHONY: watch-sanitizer-fuzzer-book
+watch-sanitizer-fuzzer-book:
+	@$(MAKE) watch FILE=$(SANITIZER_FUZZER_BOOK_FILE)
 
 # 生成されたPDFファイルを削除
 .PHONY: clean
