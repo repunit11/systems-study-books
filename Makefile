@@ -30,6 +30,7 @@ SANITIZER_FUZZER_BOOK_FILE := sanitizer-fuzzer-book/main.typ
 GO_RUNTIME_PRIMER_FILE := go-runtime-primer/main.typ
 ELF_LINKER_LOADER_PRIMER_FILE := elf-linker-loader-primer/main.typ
 ALLOCATOR_GC_PRIMER_FILE := allocator-gc-primer/main.typ
+SYSCALLS_PROCESS_PRIMER_FILE := syscalls-process-primer/main.typ
 
 # システムフォントパス（Linuxの場合、複数指定可能）
 FONT_DIR := /usr/share/fonts
@@ -52,6 +53,8 @@ help:
 	@echo "  make watch-elf-linker-loader-primer - elf-linker-loader-primer の変更を監視して自動コンパイル"
 	@echo "  make allocator-gc-primer - allocator-gc-primer を1つのPDFとしてコンパイル"
 	@echo "  make watch-allocator-gc-primer - allocator-gc-primer の変更を監視して自動コンパイル"
+	@echo "  make syscalls-process-primer - syscalls-process-primer を1つのPDFとしてコンパイル"
+	@echo "  make watch-syscalls-process-primer - syscalls-process-primer の変更を監視して自動コンパイル"
 	@echo "  make clean         - 生成されたPDFファイルを削除"
 	@echo "  make watch FILE=path/to/file.typ - ファイルの変更を監視して自動コンパイル"
 	@echo "  make fonts         - Typstで使用可能なフォント一覧を表示"
@@ -104,6 +107,11 @@ elf-linker-loader-primer:
 .PHONY: allocator-gc-primer
 allocator-gc-primer:
 	@$(MAKE) build FILE=$(ALLOCATOR_GC_PRIMER_FILE)
+
+# syscalls-process-primer を1つのPDFとしてコンパイル
+.PHONY: syscalls-process-primer
+syscalls-process-primer:
+	@$(MAKE) build FILE=$(SYSCALLS_PROCESS_PRIMER_FILE)
 
 # 指定したファイルをコンパイル
 .PHONY: build
@@ -177,6 +185,11 @@ watch-elf-linker-loader-primer:
 .PHONY: watch-allocator-gc-primer
 watch-allocator-gc-primer:
 	@$(MAKE) watch FILE=$(ALLOCATOR_GC_PRIMER_FILE)
+
+# syscalls-process-primer の変更を監視して自動コンパイル
+.PHONY: watch-syscalls-process-primer
+watch-syscalls-process-primer:
+	@$(MAKE) watch FILE=$(SYSCALLS_PROCESS_PRIMER_FILE)
 
 # 生成されたPDFファイルを削除
 .PHONY: clean
