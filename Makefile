@@ -27,6 +27,7 @@ TYPST_FILES := $(shell find . -maxdepth 1 -name "*.typ" -type f; find . -name "m
 BOOK_FILE := compilerbook/main.typ
 RUST_OS_BOOK_FILE := rust-os-book/main.typ
 SANITIZER_FUZZER_BOOK_FILE := sanitizer-fuzzer-book/main.typ
+GO_RUNTIME_PRIMER_FILE := go-runtime-primer/main.typ
 
 # システムフォントパス（Linuxの場合、複数指定可能）
 FONT_DIR := /usr/share/fonts
@@ -43,6 +44,8 @@ help:
 	@echo "  make watch-rust-os-book - rust-os-book の変更を監視して自動コンパイル"
 	@echo "  make sanitizer-fuzzer-book - sanitizer-fuzzer-book を1つのPDFとしてコンパイル"
 	@echo "  make watch-sanitizer-fuzzer-book - sanitizer-fuzzer-book の変更を監視して自動コンパイル"
+	@echo "  make go-runtime-primer - go-runtime-primer を1つのPDFとしてコンパイル"
+	@echo "  make watch-go-runtime-primer - go-runtime-primer の変更を監視して自動コンパイル"
 	@echo "  make clean         - 生成されたPDFファイルを削除"
 	@echo "  make watch FILE=path/to/file.typ - ファイルの変更を監視して自動コンパイル"
 	@echo "  make fonts         - Typstで使用可能なフォント一覧を表示"
@@ -80,6 +83,11 @@ rust-os-book:
 .PHONY: sanitizer-fuzzer-book
 sanitizer-fuzzer-book:
 	@$(MAKE) build FILE=$(SANITIZER_FUZZER_BOOK_FILE)
+
+# go-runtime-primer を1つのPDFとしてコンパイル
+.PHONY: go-runtime-primer
+go-runtime-primer:
+	@$(MAKE) build FILE=$(GO_RUNTIME_PRIMER_FILE)
 
 # 指定したファイルをコンパイル
 .PHONY: build
@@ -138,6 +146,11 @@ watch-rust-os-book:
 .PHONY: watch-sanitizer-fuzzer-book
 watch-sanitizer-fuzzer-book:
 	@$(MAKE) watch FILE=$(SANITIZER_FUZZER_BOOK_FILE)
+
+# go-runtime-primer の変更を監視して自動コンパイル
+.PHONY: watch-go-runtime-primer
+watch-go-runtime-primer:
+	@$(MAKE) watch FILE=$(GO_RUNTIME_PRIMER_FILE)
 
 # 生成されたPDFファイルを削除
 .PHONY: clean
