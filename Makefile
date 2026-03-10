@@ -28,6 +28,7 @@ BOOK_FILE := compilerbook/main.typ
 RUST_OS_BOOK_FILE := rust-os-book/main.typ
 SANITIZER_FUZZER_BOOK_FILE := sanitizer-fuzzer-book/main.typ
 GO_RUNTIME_PRIMER_FILE := go-runtime-primer/main.typ
+ELF_LINKER_LOADER_PRIMER_FILE := elf-linker-loader-primer/main.typ
 
 # システムフォントパス（Linuxの場合、複数指定可能）
 FONT_DIR := /usr/share/fonts
@@ -46,6 +47,8 @@ help:
 	@echo "  make watch-sanitizer-fuzzer-book - sanitizer-fuzzer-book の変更を監視して自動コンパイル"
 	@echo "  make go-runtime-primer - go-runtime-primer を1つのPDFとしてコンパイル"
 	@echo "  make watch-go-runtime-primer - go-runtime-primer の変更を監視して自動コンパイル"
+	@echo "  make elf-linker-loader-primer - elf-linker-loader-primer を1つのPDFとしてコンパイル"
+	@echo "  make watch-elf-linker-loader-primer - elf-linker-loader-primer の変更を監視して自動コンパイル"
 	@echo "  make clean         - 生成されたPDFファイルを削除"
 	@echo "  make watch FILE=path/to/file.typ - ファイルの変更を監視して自動コンパイル"
 	@echo "  make fonts         - Typstで使用可能なフォント一覧を表示"
@@ -88,6 +91,11 @@ sanitizer-fuzzer-book:
 .PHONY: go-runtime-primer
 go-runtime-primer:
 	@$(MAKE) build FILE=$(GO_RUNTIME_PRIMER_FILE)
+
+# elf-linker-loader-primer を1つのPDFとしてコンパイル
+.PHONY: elf-linker-loader-primer
+elf-linker-loader-primer:
+	@$(MAKE) build FILE=$(ELF_LINKER_LOADER_PRIMER_FILE)
 
 # 指定したファイルをコンパイル
 .PHONY: build
@@ -151,6 +159,11 @@ watch-sanitizer-fuzzer-book:
 .PHONY: watch-go-runtime-primer
 watch-go-runtime-primer:
 	@$(MAKE) watch FILE=$(GO_RUNTIME_PRIMER_FILE)
+
+# elf-linker-loader-primer の変更を監視して自動コンパイル
+.PHONY: watch-elf-linker-loader-primer
+watch-elf-linker-loader-primer:
+	@$(MAKE) watch FILE=$(ELF_LINKER_LOADER_PRIMER_FILE)
 
 # 生成されたPDFファイルを削除
 .PHONY: clean
