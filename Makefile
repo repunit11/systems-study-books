@@ -29,6 +29,7 @@ RUST_OS_BOOK_FILE := rust-os-book/main.typ
 SANITIZER_FUZZER_BOOK_FILE := sanitizer-fuzzer-book/main.typ
 GO_RUNTIME_PRIMER_FILE := go-runtime-primer/main.typ
 ELF_LINKER_LOADER_PRIMER_FILE := elf-linker-loader-primer/main.typ
+ALLOCATOR_GC_PRIMER_FILE := allocator-gc-primer/main.typ
 
 # システムフォントパス（Linuxの場合、複数指定可能）
 FONT_DIR := /usr/share/fonts
@@ -49,6 +50,8 @@ help:
 	@echo "  make watch-go-runtime-primer - go-runtime-primer の変更を監視して自動コンパイル"
 	@echo "  make elf-linker-loader-primer - elf-linker-loader-primer を1つのPDFとしてコンパイル"
 	@echo "  make watch-elf-linker-loader-primer - elf-linker-loader-primer の変更を監視して自動コンパイル"
+	@echo "  make allocator-gc-primer - allocator-gc-primer を1つのPDFとしてコンパイル"
+	@echo "  make watch-allocator-gc-primer - allocator-gc-primer の変更を監視して自動コンパイル"
 	@echo "  make clean         - 生成されたPDFファイルを削除"
 	@echo "  make watch FILE=path/to/file.typ - ファイルの変更を監視して自動コンパイル"
 	@echo "  make fonts         - Typstで使用可能なフォント一覧を表示"
@@ -96,6 +99,11 @@ go-runtime-primer:
 .PHONY: elf-linker-loader-primer
 elf-linker-loader-primer:
 	@$(MAKE) build FILE=$(ELF_LINKER_LOADER_PRIMER_FILE)
+
+# allocator-gc-primer を1つのPDFとしてコンパイル
+.PHONY: allocator-gc-primer
+allocator-gc-primer:
+	@$(MAKE) build FILE=$(ALLOCATOR_GC_PRIMER_FILE)
 
 # 指定したファイルをコンパイル
 .PHONY: build
@@ -164,6 +172,11 @@ watch-go-runtime-primer:
 .PHONY: watch-elf-linker-loader-primer
 watch-elf-linker-loader-primer:
 	@$(MAKE) watch FILE=$(ELF_LINKER_LOADER_PRIMER_FILE)
+
+# allocator-gc-primer の変更を監視して自動コンパイル
+.PHONY: watch-allocator-gc-primer
+watch-allocator-gc-primer:
+	@$(MAKE) watch FILE=$(ALLOCATOR_GC_PRIMER_FILE)
 
 # 生成されたPDFファイルを削除
 .PHONY: clean
