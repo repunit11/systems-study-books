@@ -25,6 +25,7 @@ endif
 # 部分ファイル（chapters/*.typ, theme.typ など）は build-all から除外する
 TYPST_FILES := $(shell find . -maxdepth 1 -name "*.typ" -type f; find . -name "main.typ" -type f)
 BOOK_FILE := compilerbook/main.typ
+RUST_OS_BOOK_FILE := rust-os-book/main.typ
 
 # システムフォントパス（Linuxの場合、複数指定可能）
 FONT_DIR := /usr/share/fonts
@@ -37,6 +38,8 @@ help:
 	@echo "  make build FILE=path/to/file.typ - 指定したファイルをコンパイル"
 	@echo "  make book          - compilerbook を1つのPDFとしてコンパイル"
 	@echo "  make watch-book    - compilerbook の変更を監視して自動コンパイル"
+	@echo "  make rust-os-book  - rust-os-book を1つのPDFとしてコンパイル"
+	@echo "  make watch-rust-os-book - rust-os-book の変更を監視して自動コンパイル"
 	@echo "  make clean         - 生成されたPDFファイルを削除"
 	@echo "  make watch FILE=path/to/file.typ - ファイルの変更を監視して自動コンパイル"
 	@echo "  make fonts         - Typstで使用可能なフォント一覧を表示"
@@ -64,6 +67,11 @@ build-all:
 .PHONY: book
 book:
 	@$(MAKE) build FILE=$(BOOK_FILE)
+
+# rust-os-book を1つのPDFとしてコンパイル
+.PHONY: rust-os-book
+rust-os-book:
+	@$(MAKE) build FILE=$(RUST_OS_BOOK_FILE)
 
 # 指定したファイルをコンパイル
 .PHONY: build
@@ -112,6 +120,11 @@ endif
 .PHONY: watch-book
 watch-book:
 	@$(MAKE) watch FILE=$(BOOK_FILE)
+
+# rust-os-book の変更を監視して自動コンパイル
+.PHONY: watch-rust-os-book
+watch-rust-os-book:
+	@$(MAKE) watch FILE=$(RUST_OS_BOOK_FILE)
 
 # 生成されたPDFファイルを削除
 .PHONY: clean
