@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 480" role="img" aria-labelledby="title desc">
+  <title id="title">Playbook learning loop</title>
+  <desc id="desc">Loop diagram showing design review, production, incident, postmortem, playbook update, and game day feeding each other.</desc>
+  <defs>
+    <style>
+      .nodeA { fill: #eef3ff; stroke: #b8c8ea; stroke-width: 2; rx: 18; ry: 18; }
+      .nodeB { fill: #faf1dc; stroke: #dcc989; stroke-width: 2; rx: 18; ry: 18; }
+      .nodeC { fill: #fff1ee; stroke: #e1b8ab; stroke-width: 2; rx: 18; ry: 18; }
+      .nodeD { fill: #f3f8f1; stroke: #9bbb95; stroke-width: 2; rx: 18; ry: 18; }
+      .text { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 21px; fill: #2d3f50; font-weight: 700; }
+      .small { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 18px; fill: #4d5968; }
+      .arrow { stroke: #5f7fb7; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#5f7fb7"/>
+    </marker>
+  </defs>
+
+  <rect width="1240" height="480" fill="#ffffff"/>
+
+  <rect class="nodeA" x="120" y="170" width="220" height="86"/>
+  <text class="text" x="160" y="210">Design review</text>
+  <text class="small" x="148" y="236">worksheet, owners, budgets</text>
+
+  <rect class="nodeB" x="500" y="70" width="240" height="86"/>
+  <text class="text" x="560" y="110">Production</text>
+  <text class="small" x="540" y="136">metrics, alerts, runbooks</text>
+
+  <rect class="nodeC" x="880" y="170" width="220" height="86"/>
+  <text class="text" x="932" y="210">Incident</text>
+  <text class="small" x="912" y="236">triage, mitigation, repair</text>
+
+  <rect class="nodeD" x="500" y="300" width="240" height="86"/>
+  <text class="text" x="550" y="340">Postmortem</text>
+  <text class="small" x="542" y="366">what was missing?</text>
+
+  <rect class="nodeB" x="120" y="300" width="220" height="86"/>
+  <text class="text" x="146" y="340">Playbook update</text>
+  <text class="small" x="160" y="366">runbook, alert, owner</text>
+
+  <rect class="nodeA" x="880" y="300" width="220" height="86"/>
+  <text class="text" x="945" y="340">Game day</text>
+  <text class="small" x="936" y="366">practice the hard path</text>
+
+  <path class="arrow" d="M340 213 C420 213, 440 115, 500 115"/>
+  <path class="arrow" d="M740 115 C800 115, 850 170, 880 213"/>
+  <path class="arrow" d="M990 256 V300"/>
+  <path class="arrow" d="M880 343 H740"/>
+  <path class="arrow" d="M500 343 H340"/>
+  <path class="arrow" d="M230 300 V256"/>
+  <path class="arrow" d="M340 213 H420"/>
+
+  <text class="small" x="375" y="441">A good playbook is not a static document. It is updated by incidents and rehearsed before the next one.</text>
+</svg>

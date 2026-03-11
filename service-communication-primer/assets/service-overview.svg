@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 620" role="img" aria-labelledby="title desc">
+  <title id="title">Service overview</title>
+  <desc id="desc">Overview diagram of the order system showing synchronous RPC calls and asynchronous Kafka fan-out.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .panel-sync { fill: #eef3ff; stroke: #b8c8ea; stroke-width: 2; }
+      .panel-async { fill: #faf1dc; stroke: #dcc989; stroke-width: 2; }
+      .box { fill: #ffffff; stroke: #6d7f96; stroke-width: 2; rx: 14; ry: 14; }
+      .storage { fill: #f7f7f7; stroke: #8f98a3; stroke-width: 2; rx: 14; ry: 14; }
+      .consumer { fill: #f3f8f1; stroke: #9bbb95; stroke-width: 2; rx: 14; ry: 14; }
+      .label { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 26px; fill: #263646; font-weight: 700; }
+      .text { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 21px; fill: #2f4052; }
+      .small { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 18px; fill: #4d5968; }
+      .sync { stroke: #5f7fb7; stroke-width: 4; fill: none; marker-end: url(#arrowSync); }
+      .async { stroke: #b57a2b; stroke-width: 4; fill: none; marker-end: url(#arrowAsync); }
+      .dash { stroke-dasharray: 8 8; }
+    </style>
+    <marker id="arrowSync" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#5f7fb7"/>
+    </marker>
+    <marker id="arrowAsync" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#b57a2b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1240" height="620"/>
+  <rect class="panel-sync" x="30" y="30" width="770" height="285" rx="22" ry="22"/>
+  <rect class="panel-async" x="30" y="350" width="1180" height="235" rx="22" ry="22"/>
+
+  <text class="label" x="56" y="72">Synchronous critical path</text>
+  <text class="label" x="56" y="392">Asynchronous fan-out after response</text>
+
+  <rect class="box" x="55" y="120" width="165" height="78"/>
+  <text class="text" x="110" y="166">Client</text>
+
+  <rect class="box" x="285" y="120" width="190" height="78"/>
+  <text class="text" x="323" y="166">API Gateway</text>
+
+  <rect class="box" x="535" y="112" width="210" height="94"/>
+  <text class="text" x="575" y="166">Order Service</text>
+
+  <rect class="box" x="905" y="70" width="255" height="74"/>
+  <text class="text" x="955" y="115">Inventory Service</text>
+
+  <rect class="box" x="905" y="170" width="255" height="74"/>
+  <text class="text" x="972" y="215">Payment Service</text>
+
+  <rect class="storage" x="535" y="232" width="210" height="58"/>
+  <text class="small" x="583" y="268">Order row + outbox</text>
+
+  <path class="sync" d="M220 159 H285"/>
+  <path class="sync" d="M475 159 H535"/>
+  <path class="sync" d="M745 140 H905"/>
+  <path class="sync" d="M745 200 H905"/>
+  <path class="sync" d="M640 206 V232"/>
+
+  <text class="small" x="802" y="106">reserve</text>
+  <text class="small" x="800" y="210">authorize</text>
+
+  <rect class="storage" x="1025" y="282" width="150" height="44" rx="22" ry="22"/>
+  <text class="small" x="1060" y="311">accepted</text>
+  <path class="sync" d="M745 260 C860 260, 900 304, 1025 304"/>
+
+  <rect class="box" x="190" y="445" width="170" height="78"/>
+  <text class="text" x="217" y="490">Outbox Relay</text>
+
+  <rect class="box" x="455" y="437" width="170" height="94"/>
+  <text class="text" x="515" y="477">Kafka</text>
+  <text class="small" x="487" y="505">topic + partitions</text>
+
+  <rect class="consumer" x="770" y="385" width="150" height="68"/>
+  <text class="small" x="812" y="426">Email Worker</text>
+
+  <rect class="consumer" x="770" y="470" width="150" height="68"/>
+  <text class="small" x="788" y="511">Analytics Consumer</text>
+
+  <rect class="consumer" x="1010" y="428" width="165" height="68"/>
+  <text class="small" x="1040" y="469">Search Indexer</text>
+
+  <path class="async dash" d="M640 290 V364"/>
+  <path class="async" d="M640 364 H190 V445"/>
+  <path class="async" d="M360 484 H455"/>
+  <path class="async" d="M625 474 H770"/>
+  <path class="async" d="M625 485 H770"/>
+  <path class="async" d="M625 495 H1010"/>
+
+  <text class="small" x="668" y="345">response already returned</text>
+</svg>

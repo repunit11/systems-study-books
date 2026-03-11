@@ -32,6 +32,7 @@ ELF_LINKER_LOADER_PRIMER_FILE := elf-linker-loader-primer/main.typ
 ALLOCATOR_GC_PRIMER_FILE := allocator-gc-primer/main.typ
 SYSCALLS_PROCESS_PRIMER_FILE := syscalls-process-primer/main.typ
 NETWORK_IO_PRIMER_FILE := network-io-primer/main.typ
+SERVICE_COMMUNICATION_PRIMER_FILE := service-communication-primer/main.typ
 
 # システムフォントパス（Linuxの場合、複数指定可能）
 FONT_DIR := /usr/share/fonts
@@ -58,6 +59,8 @@ help:
 	@echo "  make watch-syscalls-process-primer - syscalls-process-primer の変更を監視して自動コンパイル"
 	@echo "  make network-io-primer - network-io-primer を1つのPDFとしてコンパイル"
 	@echo "  make watch-network-io-primer - network-io-primer の変更を監視して自動コンパイル"
+	@echo "  make service-communication-primer - service-communication-primer を1つのPDFとしてコンパイル"
+	@echo "  make watch-service-communication-primer - service-communication-primer の変更を監視して自動コンパイル"
 	@echo "  make clean         - 生成されたPDFファイルを削除"
 	@echo "  make watch FILE=path/to/file.typ - ファイルの変更を監視して自動コンパイル"
 	@echo "  make fonts         - Typstで使用可能なフォント一覧を表示"
@@ -120,6 +123,11 @@ syscalls-process-primer:
 .PHONY: network-io-primer
 network-io-primer:
 	@$(MAKE) build FILE=$(NETWORK_IO_PRIMER_FILE)
+
+# service-communication-primer を1つのPDFとしてコンパイル
+.PHONY: service-communication-primer
+service-communication-primer:
+	@$(MAKE) build FILE=$(SERVICE_COMMUNICATION_PRIMER_FILE)
 
 # 指定したファイルをコンパイル
 .PHONY: build
@@ -203,6 +211,11 @@ watch-syscalls-process-primer:
 .PHONY: watch-network-io-primer
 watch-network-io-primer:
 	@$(MAKE) watch FILE=$(NETWORK_IO_PRIMER_FILE)
+
+# service-communication-primer の変更を監視して自動コンパイル
+.PHONY: watch-service-communication-primer
+watch-service-communication-primer:
+	@$(MAKE) watch FILE=$(SERVICE_COMMUNICATION_PRIMER_FILE)
 
 # 生成されたPDFファイルを削除
 .PHONY: clean

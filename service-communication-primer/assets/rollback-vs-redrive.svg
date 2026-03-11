@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 500" role="img" aria-labelledby="title desc">
+  <title id="title">Rollback versus redrive</title>
+  <desc id="desc">Diagram explaining the difference between rollback and redrive after a schema or consumer failure.</desc>
+  <defs>
+    <style>
+      .center { fill: #eef3ff; stroke: #b8c8ea; stroke-width: 2; rx: 14; ry: 14; }
+      .left { fill: #fff1ee; stroke: #e1b8ab; stroke-width: 2; rx: 14; ry: 14; }
+      .right { fill: #faf1dc; stroke: #dcc989; stroke-width: 2; rx: 14; ry: 14; }
+      .end { fill: #f3f8f1; stroke: #9bbb95; stroke-width: 2; rx: 14; ry: 14; }
+      .text { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 22px; fill: #2d3f50; font-weight: 700; }
+      .small { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 18px; fill: #4d5968; }
+      .arrowA { stroke: #cc6e5d; stroke-width: 4; fill: none; marker-end: url(#arrowA); }
+      .arrowB { stroke: #b57a2b; stroke-width: 4; fill: none; marker-end: url(#arrowB); }
+    </style>
+    <marker id="arrowA" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#cc6e5d"/>
+    </marker>
+    <marker id="arrowB" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#b57a2b"/>
+    </marker>
+  </defs>
+
+  <rect width="1240" height="500" fill="#ffffff"/>
+
+  <rect class="center" x="430" y="60" width="380" height="86"/>
+  <text class="text" x="500" y="108">consumer failure or schema break</text>
+
+  <rect class="left" x="120" y="220" width="350" height="100"/>
+  <text class="text" x="232" y="262">rollback</text>
+  <text class="small" x="166" y="290">restore code or config path</text>
+  <text class="small" x="165" y="314">stops further bad processing</text>
+
+  <rect class="right" x="770" y="220" width="350" height="100"/>
+  <text class="text" x="888" y="262">redrive</text>
+  <text class="small" x="824" y="290">replay isolated records after fix</text>
+  <text class="small" x="831" y="314">repairs already missed side effects</text>
+
+  <rect class="end" x="205" y="390" width="180" height="64"/>
+  <text class="small" x="238" y="429">stop the bleeding</text>
+
+  <rect class="end" x="855" y="390" width="180" height="64"/>
+  <text class="small" x="893" y="429">repair the data</text>
+
+  <path class="arrowA" d="M520 146 C520 146, 370 180, 295 220"/>
+  <path class="arrowB" d="M720 146 C720 146, 870 180, 945 220"/>
+
+  <path class="arrowA" d="M295 320 V390"/>
+  <path class="arrowB" d="M945 320 V390"/>
+
+  <text class="small" x="356" y="473">Both may be needed in the same incident.</text>
+</svg>

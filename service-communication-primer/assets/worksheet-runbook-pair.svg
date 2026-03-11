@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 500" role="img" aria-labelledby="title desc">
+  <title id="title">Worksheet and runbook pair</title>
+  <desc id="desc">Side-by-side diagram showing a design worksheet on the left and an operational runbook on the right.</desc>
+  <defs>
+    <style>
+      .sheetA { fill: #eef3ff; stroke: #b8c8ea; stroke-width: 2; rx: 16; ry: 16; }
+      .sheetB { fill: #faf1dc; stroke: #dcc989; stroke-width: 2; rx: 16; ry: 16; }
+      .head { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 24px; fill: #2d3f50; font-weight: 700; }
+      .small { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 18px; fill: #4d5968; }
+      .line { stroke: #cdd6e2; stroke-width: 2; }
+      .arrow { stroke: #5f7fb7; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#5f7fb7"/>
+    </marker>
+  </defs>
+
+  <rect width="1240" height="500" fill="#ffffff"/>
+
+  <rect class="sheetA" x="80" y="60" width="430" height="340"/>
+  <text class="head" x="220" y="103">Worksheet</text>
+  <line class="line" x1="120" y1="130" x2="470" y2="130"/>
+  <text class="small" x="120" y="165">Success means</text>
+  <text class="small" x="120" y="210">Critical path</text>
+  <text class="small" x="120" y="255">Retry / idempotency</text>
+  <text class="small" x="120" y="300">Ordering scope</text>
+  <text class="small" x="120" y="345">Replay / redrive</text>
+
+  <rect class="sheetB" x="730" y="60" width="430" height="340"/>
+  <text class="head" x="880" y="103">Runbook</text>
+  <line class="line" x1="770" y1="130" x2="1120" y2="130"/>
+  <text class="small" x="770" y="165">Symptom / Impact</text>
+  <text class="small" x="770" y="210">Check order</text>
+  <text class="small" x="770" y="255">Immediate mitigation</text>
+  <text class="small" x="770" y="300">Recovery</text>
+  <text class="small" x="770" y="345">Rollback / Redrive</text>
+
+  <path class="arrow" d="M510 230 H730"/>
+  <text class="small" x="555" y="214">design decisions become</text>
+  <text class="small" x="580" y="238">operational decisions</text>
+</svg>

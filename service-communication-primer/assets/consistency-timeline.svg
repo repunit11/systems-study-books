@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 480" role="img" aria-labelledby="title desc">
+  <title id="title">Consistency timeline</title>
+  <desc id="desc">Timeline showing that accepted, order visibility, email, search, and analytics updates complete at different times for the same order.</desc>
+  <defs>
+    <style>
+      .lane { stroke: #d7dee9; stroke-width: 2; }
+      .label { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 21px; fill: #2d3f50; }
+      .small { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 18px; fill: #4d5968; }
+      .axis { stroke: #5f7fb7; stroke-width: 4; fill: none; }
+      .tick { stroke: #9fb2cf; stroke-width: 2; }
+      .event { fill: #eef3ff; stroke: #b8c8ea; stroke-width: 2; rx: 12; ry: 12; }
+      .slow { fill: #faf1dc; stroke: #dcc989; stroke-width: 2; rx: 12; ry: 12; }
+      .late { fill: #fff1ee; stroke: #e1b8ab; stroke-width: 2; rx: 12; ry: 12; }
+      .guide { stroke: #c5cdd9; stroke-width: 2; stroke-dasharray: 8 8; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="480" fill="#ffffff"/>
+  <line class="axis" x1="220" y1="70" x2="1130" y2="70"/>
+  <text class="small" x="1085" y="52">time</text>
+
+  <text class="label" x="55" y="130">Client</text>
+  <text class="label" x="55" y="200">Order DB</text>
+  <text class="label" x="55" y="270">Email</text>
+  <text class="label" x="55" y="340">Search</text>
+  <text class="label" x="55" y="410">Analytics</text>
+
+  <line class="lane" x1="220" y1="120" x2="1130" y2="120"/>
+  <line class="lane" x1="220" y1="190" x2="1130" y2="190"/>
+  <line class="lane" x1="220" y1="260" x2="1130" y2="260"/>
+  <line class="lane" x1="220" y1="330" x2="1130" y2="330"/>
+  <line class="lane" x1="220" y1="400" x2="1130" y2="400"/>
+
+  <line class="tick" x1="320" y1="60" x2="320" y2="415"/>
+  <line class="tick" x1="470" y1="60" x2="470" y2="415"/>
+  <line class="tick" x1="660" y1="60" x2="660" y2="415"/>
+  <line class="tick" x1="840" y1="60" x2="840" y2="415"/>
+  <line class="tick" x1="1010" y1="60" x2="1010" y2="415"/>
+
+  <rect class="event" x="260" y="95" width="120" height="50"/>
+  <text class="small" x="280" y="126">SubmitOrder</text>
+
+  <rect class="event" x="405" y="95" width="130" height="50"/>
+  <text class="small" x="430" y="126">accepted</text>
+
+  <rect class="event" x="390" y="165" width="160" height="50"/>
+  <text class="small" x="413" y="196">order row visible</text>
+
+  <rect class="slow" x="610" y="235" width="100" height="50"/>
+  <text class="small" x="630" y="266">mail sent</text>
+
+  <rect class="slow" x="790" y="305" width="110" height="50"/>
+  <text class="small" x="810" y="336">search ok</text>
+
+  <rect class="late" x="950" y="375" width="120" height="50"/>
+  <text class="small" x="970" y="406">analytics ok</text>
+
+  <line class="guide" x1="470" y1="80" x2="470" y2="425"/>
+  <text class="small" x="500" y="88">same order, different freshness</text>
+</svg>

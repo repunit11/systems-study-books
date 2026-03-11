@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 520" role="img" aria-labelledby="title desc">
+  <title id="title">SubmitOrder boundary</title>
+  <desc id="desc">Sequence-oriented diagram showing the synchronous SubmitOrder path and the asynchronous continuation after accepted is returned.</desc>
+  <defs>
+    <style>
+      .lane { stroke: #d4dce8; stroke-width: 2; }
+      .head { fill: #eef3ff; stroke: #b8c8ea; stroke-width: 2; rx: 12; ry: 12; }
+      .note { fill: #faf1dc; stroke: #dcc989; stroke-width: 2; rx: 12; ry: 12; }
+      .text { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 21px; fill: #2d3f50; }
+      .small { font-family: DejaVu Sans, "Noto Sans CJK JP", sans-serif; font-size: 18px; fill: #4d5968; }
+      .sync { stroke: #5f7fb7; stroke-width: 4; fill: none; marker-end: url(#arrowSync); }
+      .return { stroke: #7f9ac6; stroke-width: 3; fill: none; stroke-dasharray: 7 7; marker-end: url(#arrowSync); }
+      .async { stroke: #b57a2b; stroke-width: 4; fill: none; stroke-dasharray: 8 8; marker-end: url(#arrowAsync); }
+      .boundary { stroke: #c1c9d8; stroke-width: 3; stroke-dasharray: 10 10; }
+      .badge { fill: #f3f8f1; stroke: #9bbb95; stroke-width: 2; rx: 24; ry: 24; }
+    </style>
+    <marker id="arrowSync" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#5f7fb7"/>
+    </marker>
+    <marker id="arrowAsync" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#b57a2b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="520" fill="#ffffff"/>
+
+  <rect class="head" x="55" y="28" width="140" height="54"/>
+  <text class="text" x="99" y="63">Client</text>
+  <line class="lane" x1="125" y1="82" x2="125" y2="458"/>
+
+  <rect class="head" x="300" y="28" width="190" height="54"/>
+  <text class="text" x="334" y="63">Order Service</text>
+  <line class="lane" x1="395" y1="82" x2="395" y2="458"/>
+
+  <rect class="head" x="565" y="28" width="180" height="54"/>
+  <text class="text" x="596" y="63">Inventory</text>
+  <line class="lane" x1="655" y1="82" x2="655" y2="458"/>
+
+  <rect class="head" x="820" y="28" width="170" height="54"/>
+  <text class="text" x="858" y="63">Payment</text>
+  <line class="lane" x1="905" y1="82" x2="905" y2="458"/>
+
+  <rect class="head" x="1030" y="28" width="170" height="54"/>
+  <text class="text" x="1078" y="63">Async</text>
+  <line class="lane" x1="1115" y1="82" x2="1115" y2="458"/>
+
+  <path class="sync" d="M125 130 H395"/>
+  <text class="small" x="195" y="120">SubmitOrder</text>
+
+  <path class="sync" d="M395 185 H655"/>
+  <text class="small" x="485" y="175">reserve stock</text>
+  <path class="return" d="M655 215 H395"/>
+  <text class="small" x="470" y="238">reserved / out_of_stock</text>
+
+  <path class="sync" d="M395 278 H905"/>
+  <text class="small" x="580" y="268">authorize(idempotency_key=K)</text>
+  <path class="return" d="M905 308 H395"/>
+  <text class="small" x="650" y="332">authorized / declined / timeout</text>
+
+  <rect class="note" x="285" y="350" width="220" height="60"/>
+  <text class="small" x="320" y="376">write order row</text>
+  <text class="small" x="327" y="399">write outbox row</text>
+
+  <path class="sync" d="M395 430 H125"/>
+  <text class="small" x="188" y="420">accepted(order_id)</text>
+  <rect class="badge" x="48" y="444" width="154" height="42"/>
+  <text class="small" x="86" y="471">sync boundary</text>
+
+  <line class="boundary" x1="0" y1="432" x2="1240" y2="432"/>
+  <text class="small" x="948" y="422">response returned here</text>
+
+  <path class="async" d="M395 410 C395 410, 395 462, 1115 462"/>
+  <text class="small" x="690" y="486">OrderCreated -&gt; relay -&gt; Kafka -&gt; consumers</text>
+</svg>
